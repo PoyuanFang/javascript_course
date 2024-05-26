@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    class Person {
+      color = 'white';
+      constructor(name,age) {
+        this._name = name;
+        this._age = age;
+      }
+      introduce() {
+        console.log(`這是 ${this._name}, 年齡 ${this._age} 歲`);
+      }
+    }
+
+    const fang = new Person({ name: 'Fang', age: 18});
+
+    class Student extends Person{
+      constructor(name,age,school){
+        super(name,age);
+        this._school = school;
+      }
+      introduce(){
+        super.introduce()
+        console.log(`正在${this._school}上課`);
+      }
+      study(){
+        console.log(`${this._name}正在${this._school}上課`);
+      }
+    }
+
+    const Poyuan = new Student('Poyuan',26,'資展');
+    console.log(Poyuan);
+    Poyuan.introduce();
+    Poyuan.study();
+  </script>
+</body>
+</html>

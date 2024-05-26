@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>練習14</title>
+</head>
+
+<body>
+  <script>
+    let food = [
+      "   chicken-nuggets ",
+      " beef-stew   ",
+      "apple-pie   ",
+      "  fish-tacos",
+      "  cheese-burger ",
+      "  spaghetti-bolognese ",
+      "   bacon-lettuce-tomato  ",
+      "   egg-salad  ",
+      "  garlic-bread ",
+      "  honey-mustard-chicken "
+    ];
+
+    let newFood = [];
+    food.forEach(function (v, i, arr) {
+      let trimFood = v.trim(); // 移除空白
+      let replaceFood = trimFood.replaceAll('-', ' '); // 把 - 用空白取代
+      let upperCaseFood = replaceFood.charAt(0).toUpperCase(); // 第一個字變大寫
+      let remainFood = replaceFood.slice(1); // 剩下的字
+      let foodName = upperCaseFood + remainFood; // 組合第一個字大寫 + 剩下的字
+      newFood.push(foodName);
+
+    })
+    console.log(newFood);
+
+    /*
+    使用 split() 和 join() 把練習11的 newFood 變成駝峰式名稱 (camelCase)，
+    並存成一個新的變數 camelCaseFood
+    */
+    let camelCaseFood=[]
+    newFood.forEach(function(v, i,arr) {
+      let splitFood=v.split(' '); //把字串用空白分割
+      let firstFood=splitFood[0].toLowerCase()
+      let secondFoodFirstAlphabet=splitFood[1].charAt(0).toUpperCase() //第一個字大寫
+      let secondFoodRemindword=splitFood[1].slice(1); //剩下的字
+      let secondFood=secondFoodFirstAlphabet+secondFoodRemindword;
+      let foodName=[firstFood,secondFood].join('');
+      camelCaseFood.push(foodName)
+    })
+
+
+
+    console.log(camelCaseFood);
+
+
+  </script>
+</body>
+
+</html>

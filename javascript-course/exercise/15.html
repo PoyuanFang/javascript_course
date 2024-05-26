@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>練習15</title>
+</head>
+
+<body>
+  <script>
+    let farm = [
+      {
+        id: 1,
+        name: '豬',
+        en: 'pig',
+        male: 11,
+        female: 5,
+        isLarge: false,
+      },
+      {
+        id: 2,
+        name: '虎',
+        en: 'tiger',
+        male: 3,
+        female: 10,
+        isLarge: true,
+      },
+      {
+        id: 3,
+        name: '馬',
+        en: 'horse',
+        male: 9,
+        female: 8,
+        isLarge: true,
+      },
+      {
+        id: 4,
+        name: '羊',
+        en: 'sheep',
+        male: 22,
+        female: 34,
+        isLarge: false,
+      },
+      {
+        id: 5,
+        name: '兔',
+        en: 'rabbit',
+        male: 37,
+        female: 4,
+        isLarge: false,
+      }
+    ]
+
+    let farmInfo = {};
+    let totalValue = null;
+    let maleValue = null;
+    for (let i = 0; i < farm.length; i++) {
+      let animal = { ...farm[i] };
+      let key = animal.en;
+      let countValue = animal.male + animal.female;
+      let groupSizeVale = '';
+      if (i === 0) {
+        continue;
+      }
+      if (countValue >= 50) {
+        groupSizeVale = '大';
+      } else if (countValue < 50 && countValue > 15) {
+        groupSizeVale = '中';
+      } else {
+        groupSizeVale = '小';
+      }
+      farmInfo[key] = {
+        ...farm[i],
+        count: countValue,
+        groupSize: groupSizeVale
+      }
+      totalValue += countValue;
+      maleValue += animal.male;
+    }
+    farmInfo.total = totalValue;
+    farmInfo.maleAverage = maleValue / farm.length;
+
+    /*
+    圖表的 x 軸準備使用一個叫 xAxis 的變數，類型為陣列
+    圖表的 y 軸準備使用一個叫 data 的變數，類型為陣列 
+    請使用 Object 物件方法擷取出 farmInfo 裡的 key (動物)，加入 xAxis 陣列
+    請使用 Object 物件方法擷取出 farmInfo 裡的 count 屬性，加入 data 陣列
+    注意：farmInfo 裡的 total 及 maleAverage 不應該被加入 xAxis 及 data 裡
+    */
+    
+    
+    let xAxis = [];
+    let data = [];
+    /*
+    console.log(Object.keys(farmInfo));
+
+    Object.values(farmInfo).forEach((v, i, arr) => {
+      let value = v.count
+      data.push(value)
+    }
+    )
+    console.log(data);
+    */
+
+    Object.entries(farmInfo).forEach(([key,value], i, arr)=>{
+      xAxis.push(key);
+      data.push(value.count);
+    }
+    )
+    console.log(xAxis);
+    console.log(data);
+
+
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>This</title>
+</head>
+
+<body>
+  <script>
+    'use strict'; //嚴格模式
+    function printThis() {
+      console.log(this);
+    }
+
+    printThis()
+    console.log(this);
+
+    const info = {
+      name:'Poyuan',
+      printName: function(){
+        console.log(this.name);
+      },
+    }
+    info.printName();
+
+    //構造函數
+    function Place(country){
+      this.place = country;
+    }
+    const instance = new Place('Taiwan'); //創建實例
+    const instance2 = new Place('world'); //創建實例
+    console.log(instance.place); //Taiwan
+    console.log(instance2.place); //world
+
+  </script>
+</body>
+
+</html>

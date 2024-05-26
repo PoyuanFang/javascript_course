@@ -8,7 +8,27 @@
 </head>
 
 <body>
-  <script></script>
+  <script>
+    /*
+    let fruits=['apple','banana','orange','lemon'];
+    //let [apple,banana, orange,lemon] = ['apple','banana','orange','lemon']
+    let [,banana,peach,orange,lemon]=fruits;
+    console.log(orange); //lemon
+    // console.log(apple);  可以用空格保留對應的位子
+    console.log(banana); //空格有保留，所以還是banana
+    */
+
+    let fruitObj={
+      apple:'蘋果',
+      nanana:'香蕉',
+      orange:'橘子',
+      lemon:'檸檬'
+    }
+            //可以直接改變數名稱
+    let {apple,nanana:banana,orange,lemon} = fruitObj;
+    console.log(banana);
+
+</script>
 </body>
 
 </html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>原型練習</title>
+</head>
+
+<body>
+  <script>
+    //帳戶
+    //Account的構造函數
+    //accountNumber,ownerName,balance
+
+    function Account(accountNumber, ownerName, balance) {
+      this.accountNumber = accountNumber;
+      this.ownerName = ownerName;
+      this.balance = balance || 0;
+      console.log(this);
+    }
+
+    //prototype 上寫一個deposit方法
+    //參數amount 金額
+    //如果amount>0,就加到balance上
+    //console.log(`金額...存款成功,餘額...`);
+    Account.prototype.deposit = function (amount) {
+      if (amount > 0) {
+        this.balance += amount;
+      }
+      console.log(`金額${amount}存款成功,餘額${this.balance}`);
+    }
+
+    //prototype 上寫一個withdraw 提款方法
+    //參數amount 金額
+    //如果amount>balance,就console.log(`餘額不足，扣款失敗`)
+    //否則 console.log(`金額${amount}提款成功,餘額${this.balance}`)
+    Account.prototype.withdraw = function (amount) {
+      if (amount > this.balance) {
+        console.log(`餘額不足，提款失敗`)
+      } else {
+        this.balance -= amount;
+        console.log(`金額${amount}提款成功,餘額${this.balance}`)
+      }
+    }
+
+    // prototype 上寫一個 getBalance 查餘額 方法
+    // return 餘額
+    // console.log(`餘額: ...。`)
+    Account.prototype.getBalance = function () {
+      console.log(`餘額:${this.balance}`);
+      return this.balance;
+    }
+
+    const MyAccount = new Account('510214', 'Fang', 1000);
+    MyAccount.deposit(100);
+    MyAccount.withdraw(200);
+    console.log(MyAccount.getBalance());
+
+
+    // 儲蓄帳戶
+    // SavingsAccount 的構造函數
+    // this綁定
+    // 參數: interestRate 利息比率
+    function SavingAccount(accountNumber, ownerName, balance, interestRate) {
+      Account.call(this, accountNumber, ownerName, balance)
+      this.interestRate = interestRate;
+    }
+
+    //prototype繼承
+    SavingAccount.prototype = Object.create(Account.prototype);
+    SavingAccount.prototype.constructor = SavingAccount;
+
+    // prototype 上寫一個 addInterest 加利息 方法
+    // 利息 = (利率 * 餘額) / 100
+    // 再把利息加上餘額
+    // console.log(`存款利息 ..., 餘額: ...。`);
+    SavingAccount.prototype.addInterest = function () {
+      const interest = (this.interestRate * this.balance) / 100;
+      this.balance += interest
+      console.log(`存款利息${interest}, 餘額:${this.balance}。`);
+    }
+
+    const FangsAccount = new SavingAccount('12345', 'Poyuan', 1000, 2);
+
+    FangsAccount.addInterest();
+
+    //免費轉帳次數
+    function CheckingAccount(accountNumber, ownerName, balance, freeTransitions) {
+      Account.call(this, accountNumber, ownerName, balance)
+      this.freeTransitions = freeTransitions;
+      this.transactionCount = 0;
+    }
+
+    CheckingAccount.prototype = Object.create(Account.prototype);
+    CheckingAccount.prototype.constructor = CheckingAccount;
+
+    //改寫Account方法
+    //手續費10
+    CheckingAccount.prototype.withdraw = function (amount) {
+      Account.prototype.withdraw.call(this, amount);
+      this.transactionCount++;
+      if (this.transactionCount > this.freeTransitions) {
+        console.log(`扣除交易手續費`);
+        Account.prototype.withdraw.call(this, 10)
+      }
+    }
+
+    CheckingAccount.prototype.resetTransactionCount = function () {
+      this.transactionCount = 0;
+    }
+
+    const myCheckingAccount = new CheckingAccount('12345', 'Poyuan', 1000, 1)
+
+    myCheckingAccount.withdraw(200)
+    myCheckingAccount.withdraw(200)
+
+  </script>
+</body>
+
+</html>

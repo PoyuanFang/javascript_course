@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>練習10</title>
+</head>
+
+<body>
+  <script>
+    let farm = [
+      {
+        id: 1,
+        name: '豬',
+        en: 'pig',
+        male: 11,
+        female: 5,
+        isLarge: false,
+      },
+      {
+        id: 2,
+        name: '虎',
+        en: 'tiger',
+        male: 3,
+        female: 10,
+        isLarge: true,
+      },
+      {
+        id: 3,
+        name: '馬',
+        en: 'horse',
+        male: 9,
+        female: 8,
+        isLarge: true,
+      },
+      {
+        id: 4,
+        name: '羊',
+        en: 'sheep',
+        male: 22,
+        female: 34,
+        isLarge: false,
+      },
+      {
+        id: 5,
+        name: '兔',
+        en: 'rabbit',
+        male: 37,
+        female: 4,
+        isLarge: false,
+      },
+    ]
+
+    let createAnimal = (animal) =>{  //箭頭函示
+      return{   //回傳物件
+        name:animal.name,
+        count:animal.male+animal.female,
+      }
+    }
+
+    let newAnimals = []
+    for(animal of farm){
+      let newAnimal=createAnimal(animal); //用newAnimal這個變數去接結果
+      newAnimals.push(newAnimal); //把每一個跑出的結果新增進newAnimals陣列中
+      // newAnimals[newAnimals.length] = newAnimal;  不同寫法＝newAnimals.push(newAnimal)
+    }
+    console.log(newAnimals);
+
+    newAnimals.splice(2,1,{name:'牛',count:11},{name:'驢',count:7},{name:'雞',count:26});
+    console.log(newAnimals);
+    let newAnimals1=newAnimals.slice(0,2); //第一個陣列是 index 0 - 1 的陣列 (包含1)
+    console.log(newAnimals1);
+    let newAnimals2=newAnimals.slice(5);  //第二個陣列是 index 5 以後的陣列
+    console.log(newAnimals2);
+    let allAnimals = newAnimals1.concat(newAnimals2);
+    console.log(allAnimals);
+
+    allAnimals.forEach(function(v ,i, arr){
+      console.log(`動物${v.name},數量${v.count}`);
+    })
+
+  </script>
+</body>
+
+</html>

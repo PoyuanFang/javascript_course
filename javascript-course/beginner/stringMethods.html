@@ -8,7 +8,31 @@
 </head>
 
 <body>
-  <script></script>
+  <script>
+    let greeting = 'Hello world!';
+    console.log(greeting.toUpperCase()); //大寫
+    console.log(greeting.toLowerCase()); //小寫
+
+    let greetingTrim='    Hello world!  '
+    console.log(greetingTrim.trim()); //移除空白
+    console.log(greetingTrim);
+
+    console.log(greeting.charAt(7)); //找出指定的字
+    
+    console.log(greeting.replace('world','Taiwan')); //(要取代的字,取代的內容)
+    let greetingReplace = 'Hello world world!'
+    console.log(greetingReplace.replace('world','Taiwan')); //只取代一個
+    console.log(greetingReplace.replaceAll('world','Taiwan')); //全部取代(如果有重複字串)
+
+    console.log(greeting.slice(0,5)); //切開
+    console.log(greeting.slice(6)); //直接從輸入的順序開始到結束
+    console.log(greeting.slice(-1));
+
+    console.log(greeting.substring(11,6)); //提取字串的一部分 (開始的i,結束的i) 順序可以互換
+
+    console.log(greeting.indexOf('o')); //找出指定字串的index 如果沒有回傳-1
+
+  </script>
 </body>
 
 </html>

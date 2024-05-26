@@ -2,13 +2,160 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>事件處理 Event Handle</title>
+  <style>
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+      }
+
+      to {
+        opacity: 0;
+      }
+    }
+
+    .greeting {
+      background: lightblue;
+      opacity: 0;
+      /*display: none;*/
+    }
+
+    .show {
+      display: block;
+    }
+
+    .hide {
+      display: none;
+    }
+
+    .fadeOut {
+      animation: fadeOut 0.5s;
+    }
+
+    .fadeIn {
+      animation: fadeIn 0.5s;
+      opacity: 1;
+    }
+  </style>
 </head>
 
 <body>
-  <script></script>
+
+  <button onclick="showAlert()">Html onclick呼叫alert</button>
+  <button id="alertBtn">DOM onclick呼叫alert</button>
+  <button id="listenerAlertBtn">DOM addEventListener呼叫alert</button>
+  <button id="clickBtn">click事件</button>
+  <button id="mouseoverBtn">mouseover事件</button>
+  <button id="mouseoutBtn">mouseout事件</button>
+  <input type="text" value="focus 事件" id="focusInput">
+  <input type="text" value="blur 事件" id="blurInput">
+  <input type="text" value="keydown 事件" id="keydownInput">
+  <input type="text" value="keyup 事件" id="keyupInput">
+  <input type="text" value="keypress 事件" id="keypressInput">
+
+  <input type="button" class="greetingBtn" data-index="0" value="打個招呼">
+  <div class="greeting">hi!</div>
+  <script>
+    /*
+    const showAlert = () => {
+        alert('hi');
+      }
+  
+      //DOM onclick呼叫alert
+      let alertBtnEl = document.querySelector('#alertBtn');
+      console.log(alertBtnEl);
+      alertBtnEl.onclick = showAlert; //不用加() 不然會執行到64行就直接呼叫
+  
+      let listenerAlertBtnEl = document.getElementById('listenerAlertBtn');
+      console.log(listenerAlertBtnEl);
+      listenerAlertBtnEl.addEventListener('click',showAlert);
+  
+      let clickBtnEl = document.getElementById('clickBtn')
+      clickBtnEl.addEventListener('click', function () {
+        console.log('clicked!');
+      });
+  
+      let mouseoverBtnEl = document.getElementById('mouseoverBtn');
+      mouseoverBtnEl.addEventListener('mouseover',()=>{
+        console.log('mouseover!');
+      })
+  
+      let mouseoutBtnEl = document.getElementById('mouseoutBtn')
+      mouseoutBtnEl.addEventListener('mouseout',()=>{
+        console.log('mouseout!');
+      })
+  
+      let focusInputEl = document.querySelector('#focusInput')
+      focusInputEl.addEventListener('focus',()=>{
+        console.log('focus!');
+      })
+  
+      let blurInputEl = document.querySelector('#blurInput')
+      blurInputEl.addEventListener('blur',()=>{
+        console.log('blur!');
+      })
+      
+      let keydownInputEl = document.querySelector('#keydownInput')
+      keydownInputEl.addEventListener('keydown',()=>{
+        console.log('keydown!');
+      })
+      
+      let keyupInputEl = document.querySelector('#keyupInput')
+      keyupInputEl.addEventListener('keyup',()=>{
+        console.log('keyup!');
+      })
+  
+      let keypressInputEl = document.querySelector('#keypressInput')
+      keypressInputEl.addEventListener('keypress',()=>{
+        console.log('keypress!');
+      })
+      */
+
+    document.addEventListener('DOMContentLoaded', () => {
+      //DOM加載好後要做的事
+      let greetingBtnEl = document.querySelector('.greetingBtn');
+      let greetingEl = document.querySelector('.greeting')
+      let visible = false;
+      greetingBtnEl.addEventListener('click', (event) => {
+        /*
+        console.log(event.type);
+        console.log(event.target.style.color);
+        */
+        //greetingEl.classList.add('show');
+        //greetingEl.classList.remove('show');
+        //greetingEl.classList.toggle('show');
+        /*
+        if (greetingEl.classList.contains('hide')) {
+          greetingEl.classList.replace('hide','show');
+        }else{
+          greetingEl.classList.replace('show','hide');
+        }
+        */
+        if (visible) {
+          greetingEl.classList.remove('fadeIn');
+          greetingEl.classList.add('fadeOut');
+        }else{
+          greetingEl.classList.add('fadeIn');
+          greetingEl.classList.remove('fadeOut');
+        }
+        visible = !visible;  //改變狀態
+      })
+    })
+
+
+  </script>
 </body>
 
 </html>

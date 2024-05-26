@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Math 物件方法</title>
+</head>
+
+<body>
+  <script>
+    /*
+    console.log(Math.round(3.574)); //四捨五入
+    console.log(Math.floor(3.574)); //無條件捨去
+    console.log(Math.ceil(3.574));  //無條件進位
+    console.log(Math.random());     //隨機產生0-1之間的小數
+    console.log(Math.max(3,74));    //取最大值
+    console.log(Math.min(3,74));    //取最小值
+    console.log(Math.PI);           //取圓周率
+    console.log(Math.E);            //常數
+    */
+
+    let now= new Date();
+    console.log(now);
+
+    let date= new Date('2024-01-01')
+    console.log(date);
+
+    date.getFullYear()
+    console.log(now.getFullYear());
+    console.log(now.getMonth()); // 0(要＋1)
+    console.log(now.getHours());
+    console.log(now.getMinutes());
+    console.log(now.getSeconds());
+
+    //2024-1/11 00:00:00
+
+    console.log(now.toISOString()); //國際標準格式 2024-01-11T05:43:51.665Z
+    
+
+    </script>
+</body>
+
+</html>

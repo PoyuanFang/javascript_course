@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>練習12</title>
+</head>
+
+<body>
+  <script>
+    let farm = [
+      {
+        id: 1,
+        name: '豬',
+        en: 'pig',
+        male: 11,
+        female: 5,
+        isLarge: false,
+      },
+      {
+        id: 2,
+        name: '虎',
+        en: 'tiger',
+        male: 3,
+        female: 10,
+        isLarge: true,
+      },
+      {
+        id: 3,
+        name: '馬',
+        en: 'horse',
+        male: 9,
+        female: 8,
+        isLarge: true,
+      },
+      {
+        id: 4,
+        name: '羊',
+        en: 'sheep',
+        male: 22,
+        female: 34,
+        isLarge: false,
+      },
+      {
+        id: 5,
+        name: '兔',
+        en: 'rabbit',
+        male: 37,
+        female: 4,
+        isLarge: false,
+      }
+    ]
+    /*會有一個 farmInfo 的物件變數，內容為各種動物的英文名稱作為 key，value 是一個物件
+    1.物件裡新增一個 key count，value 為該動物公的 + 母的數量
+    2.物件裡新增一個 key groupSize，value 為 大, 中 或 小，如果 count 大於等於 50，則 groupSize 為 大；介於 50-15 則為 中；小於等於 15 為 小
+    3.farmInfo 裡新增一個 key total，value 為所有動物的數量
+    4.farmInfo 裡新增一個 key maleAverage，value 為所有公的動物的數量平均值
+    5.請皆用迴圈來計算及處理，資料不能寫死 (如果換資料也要能運作)
+    6.遇到第一種動物的時候，請跳過上面的操作
+    */
+
+    let farmInfo = {};
+    let totalValue = null;
+    let maleValue = null;
+    for (let i = 0; i < farm.length; i++) {
+      let animal = { ...farm[i] };
+      let key = animal.en;
+      let countValue = animal.male + animal.female;
+      let groupSizeVale = '';
+      if (i === 0) {
+        continue;
+      }
+      if (countValue >= 50) {
+        groupSizeVale = '大';
+      } else if (countValue < 50 && countValue > 15) {
+        groupSizeVale = '中';
+      } else {
+        groupSizeVale = '小';
+      }
+      farmInfo[key] = {
+        ...farm[i],
+        count: countValue,
+        groupSize: groupSizeVale
+      }
+      totalValue += countValue;
+      maleValue += animal.male;
+    }
+    farmInfo.total = totalValue;
+    farmInfo.maleAverage = maleValue / farm.length;
+    console.log(farmInfo);
+  </script>
+</body>
+
+</html>

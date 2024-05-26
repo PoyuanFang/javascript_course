@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>遞迴 Recursion</title>
+  </head>
+  <body>
+    <script>
+      /*
+      function recursion() {
+        return recursion();
+      }
+      */
+      //3! = 3 * 2 * 1
+      //4! = 4 * 3!
+      //5! = 5 * 4 * 3 * 2 * 1
+      function factorial(n){
+        if (n===0) {
+          return 1;
+        }else{
+          //return n * (n-1)!
+          return n * factorial(n-1)
+        }
+      }
+
+      console.log(factorial(5));
+      console.log(factorial(4));
+      console.log(factorial(3));
+    </script>
+  </body>
+</html>

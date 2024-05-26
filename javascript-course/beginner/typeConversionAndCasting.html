@@ -8,7 +8,54 @@
 </head>
 
 <body>
-  <script></script>
+  <script>
+    let greeting=['Hello','world!'];
+    let number=0.35784;
+    let integer=4;
+    console.log(greeting.toString());
+    console.log(String(greeting));
+    console.log(String(number)); //轉換為字串
+    
+    //number轉換為string
+    console.log(number.toFixed(2)); //取到指定的小數點位子
+    console.log(integer.toFixed(2)); //4.00
+
+    //強制轉型
+    let a ='1';
+    let b =1; //自動轉換為字串
+    console.log(a+b); //11 
+
+    let c='2'
+    console.log(b*c); //2 算術運算子會優先轉換成數字
+
+    //string轉換為array
+    //在字串中找到指定字符，以字符分割字串，並變成陣列
+    let string='Hello,world!'
+    string.split(',');
+    console.log(string.split(',')); //['Hello', 'world!']
+
+    //陣列的所有元素連接成一個字符串
+    let array=['Hello', 'world!'];
+    console.log(array.join(','));
+
+    //Object 轉換為 String
+    let info={
+      name:'Fang',
+      color:'blue',
+    }
+    console.log(JSON.stringify(info)) //{name:"Fang",color:"blue"}
+
+    //JSON 字串轉換為 Object 
+    let JSONString='{"name":"Fang","color":"blue"}'
+    console.log(JSON.parse(JSONString)); //{name:"Fang",color:"blue"}
+
+    //Object 轉換為 Array
+    console.log(Object.keys(info));    //['name', 'color']
+    console.log(Object.values(info));  //['Fang', 'blue']
+    console.log(Object.entries(info)); //0:['name','Fang'] 1:['color','blue']
+    console.log(Object.fromEntries(Object.entries(info)));  //{name: 'Fang', color: 'blue'} 變回物件
+
+  </script>
 </body>
 
 </html>

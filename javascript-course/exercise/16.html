@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>練習16</title>
+  <style>
+    button[data-color="0"] {
+      background-color: lightgoldenrodyellow;
+    }
+
+    button[data-color="1"] {
+      background-color: lightblue;
+    }
+
+    button[data-color="2"] {
+      background-color: lightpink;
+    }
+
+    button[data-color="3"] {
+      background-color: lightcyan;
+    }
+
+    button[data-color="4"] {
+      background-color: lightskyblue;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="hashtagContainer"></div>
+  <script>
+    let food = [
+      "   chicken-nuggets ",
+      " beef-stew   ",
+      "apple-pie   ",
+      "  fish-tacos",
+      "  cheese-burger ",
+      "  spaghetti-bolognese ",
+      "   bacon-lettuce-tomato  ",
+      "   egg-salad  ",
+      "  garlic-bread ",
+      "  honey-mustard-chicken "
+    ];
+
+    let newFood = [];
+    food.forEach(function (v, i, arr) {
+      let trimFood = v.trim(); // 移除空白
+      let replaceFood = trimFood.replaceAll('-', ' '); // 把 - 用空白取代
+      let upperCaseFood = replaceFood.charAt(0).toUpperCase(); // 第一個字變大寫
+      let remainFood = replaceFood.slice(1); // 剩下的字
+      let foodName = upperCaseFood + remainFood; // 組合第一個字大寫 + 剩下的字
+      newFood.push(foodName); //把得到的結果放回陣列
+
+    })
+    console.log(newFood);
+
+    let containerEl = document.getElementById('hashtagContainer')
+    newFood.forEach((v, i, arr)=>{
+      let buttonEl = document.createElement('button'); 
+      //把按鈕放進去
+      buttonEl.textContent = '#'+ v;
+      buttonEl.dataset.color = i % 5; //可以把i分群
+      containerEl.appendChild(buttonEl);
+    }
+    )
+    
+    let buttonEls = document.querySelectorAll('button');
+    console.log(buttonEls);
+    for (const buttonEl of buttonEls) {
+      if (buttonEl.textContent === '#Egg salad') {
+        buttonEl.previousElementSibling.previousElementSibling.style.fontWeight='600';
+        buttonEl.parentNode.lastElementChild.style.fontWeight='600';
+      }
+    }
+
+  </script>
+</body>
+
+</html>

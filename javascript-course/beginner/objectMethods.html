@@ -8,7 +8,16 @@
 </head>
 
 <body>
-  <script></script>
+  <script>
+    let info={
+      name:'Poyuan',
+      color:'blue',
+    }
+
+    let newInfo=Object.assign({},info); //淺拷貝
+    newInfo.color='red'
+    console.log(newInfo);
+  </script>
 </body>
 
 </html>

@@ -8,7 +8,74 @@
 </head>
 
 <body>
-  <script></script>
+  <form id="infoForm">
+    <label for="name">姓名</label>
+    <input type="text" value="" name="name" id="name" />
+    <!-- <textarea>...</textarea> -->
+    <label for="color">喜歡的顏色</label>
+    <input type="text" value="" name="color" id="color" />
+    <input type="submit" value="提交資訊表單" form="infoForm" />
+    喜歡的動物:cat
+    <input type="hidden" name="pet" value="貓"> <!--可以傳沒有在輸入框的資料-->
+  </form>
+
+  <form id="signupForm">
+    <label for="account">帳號</label>
+    <input type="text" value="" name="account" id="account" />
+    <label for="password">密碼</label>
+    <input type="text" name="password" id="password" />
+    <input type="submit" value="提交註冊表單" form="signupForm" /> <!-- 用form指定要提交的表單 -->
+  </form>
+  <script>
+    const nameInputEl = document.querySelector('[name="name"]')
+    //console.log(nameInputEl.value);
+    const colorInputEl = document.querySelector('[name="color"]')
+    //colorInputEl.value = 'white';
+    //console.log(colorInputEl.value);
+    const infoFormEl = document.querySelector('#infoForm')
+    const signupForm = document.querySelector('#signupForm')
+
+
+    // nameInputEl.addEventListener('change', (e) => {
+    //   console.log(e.target.value); //取得使用者輸入的值
+    // })
+    // colorInputEl.addEventListener('keyup',(e) => {
+    //   console.log(e.target.value);
+    // })
+    
+    // JSON 
+    // {
+    //   'name':'Fang',
+    //   'color':'blue',
+    //   'pet':'cat'
+    // }
+    infoFormEl.addEventListener('submit', (e) => {
+      e.preventDefault();
+      console.log('資訊表單已被提交');
+      console.log(e.target.elements);
+      let formObj = {};
+      for (let element of e.target.elements) { //對於e.target裡面的每個元素來說
+        if(element.name){
+        formObj[element.name] = element.value;
+      }
+      }
+      console.log(formObj);
+    })
+
+    //FormData
+    //entries array
+    //[account,'Fang']
+    //[password,'pass123']
+    signupForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      console.log('註冊表單已被提交');
+      let formData = new FormData(e.target);
+      for(let[key,value] of formData.entries()){ //解構賦值
+        console.log(key,value);
+      }
+    })
+
+  </script>
 </body>
 
 </html>

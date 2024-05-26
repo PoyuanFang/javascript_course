@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const person = {
+  name: "Jay",
+  age: 24,
+  showThis() {
+    console.log(this);
+  }
+};
+
+person.showThis(); // person object
+const showThisFunc = person.showThis; // 只是傳送記憶體位置給 showThisFunc 變數
+showThisFunc(); // window object
+  </script>
+</body>
+</html>

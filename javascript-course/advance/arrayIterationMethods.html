@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>陣列迭代方法 Array Iteration Methods</title>
+</head>
+
+<body>
+  <script>
+    const products = [
+      { name: '筆記型電腦', category: '電子產品', price: 30000, stock: 10 },
+      { name: '襯衫', category: '服裝', price: 200, stock: 500 },
+      { name: '咖啡機', category: '家電', price: 4000, stock: 5 },
+      { name: '書籍', category: '文學', price: 300, stock: 100 },
+      { name: '智能手機', category: '電子產品', price: 20000, stock: 15 },
+      { name: '牛仔褲', category: '服裝', price: 600, stock: 30 },
+    ];
+
+    /*
+    const newProducts = [...products];
+    newProducts[0].name = '電腦';
+    console.log(products);
+    console.log(newProducts);
+    */
+
+    const newProducts = JSON.parse(JSON.stringify(products));
+    newProducts[0].name = '電腦';
+    console.log(products);
+    console.log(newProducts);
+
+    //迭代
+    // products.forEach((v,i,arr)=>{})
+    // const productName = products.map((v,i,arr)=>{
+    //   return v.name;
+    // })
+    // console.log(productName);
+
+    const productName = products.map((v) => v.name);
+    console.log(productName);
+    console.log(productName.at(-1)); //拿到最後一項
+
+    //挑電子產品
+    const electronicProduct = products.filter((v, i, arr) => {
+      return v.category === '電子產品'
+    })
+    console.log(electronicProduct);
+
+
+    const otherProduct = products.filter((v, i, arr) => {
+      return v.category !== '文學'
+    })
+    console.log(otherProduct);
+
+    const ascendProduct = [...products].sort((a, b) => {
+      return a.price - b.price
+    })
+    console.log(ascendProduct);
+    console.log(products);
+
+    const descendProduct = [...products].sort((a,b)=>{
+      return b.price-a.price;
+    })
+    console.log(descendProduct);
+
+    const checkStock = products.some((v)=>{
+      return v.stock<10;
+    });
+    console.log(checkStock);
+
+    const checkPrice = products.every((v)=>v.price>1000);
+    console.log(checkPrice);
+
+    const apparelProduct = products.find((v)=>v.category==='服裝'); //找到第一個
+    console.log(apparelProduct);
+
+    const noResult = products.find((v)=>v.stock>1000);
+    console.log(noResult); //undefined
+
+    const apparelProductIndex = products.findIndex((v)=> v.category==='服裝');
+    console.log(apparelProductIndex); //1
+
+    const noResultIndex = products.findIndex((v)=>v.stock>1000);
+    console.log(noResultIndex); //-1
+
+    /*
+    arr.reduce((acc,currentValue)=>{
+      return acc+currentValue
+    },initialValue)
+    */
+
+    const totalPrice = products.reduce((total,item)=>{
+      return total+item.price;
+    },0);
+    console.log(totalPrice);
+
+    </script>
+</body>
+
+</html>

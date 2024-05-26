@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trusy and Falsy Values</title>
+</head>
+
+<body>
+  <script>
+    console.log(+'2');
+
+    console.log(1 === true);
+    console.log(1 == true);
+
+    function separateTrusyAndFalsy(values) {
+      let trusyValues = [];
+      let falsyValues = [];
+      for (let value of values) {
+        if (value) {
+          trusyValues.push(value);
+        } else {
+          falsyValues.push(value);
+        }
+      }
+      return { trusy: trusyValues, falsy: falsyValues }
+    }
+
+    console.log(separateTrusyAndFalsy('',0,[],null,undefined));
+  </script>
+</body>
+
+</html>

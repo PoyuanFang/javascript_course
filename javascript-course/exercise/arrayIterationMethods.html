@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>陣列迭代方法練習</title>
+</head>
+
+<body>
+  <script>
+    let farm = [
+      {
+        id: 1,
+        name: '豬',
+        en: 'pig',
+        male: 11,
+        female: 5,
+        isLarge: false,
+      },
+      {
+        id: 2,
+        name: '虎',
+        en: 'tiger',
+        male: 3,
+        female: 10,
+        isLarge: true,
+      },
+      {
+        id: 3,
+        name: '馬',
+        en: 'horse',
+        male: 9,
+        female: 8,
+        isLarge: true,
+      },
+      {
+        id: 4,
+        name: '羊',
+        en: 'sheep',
+        male: 22,
+        female: 34,
+        isLarge: false,
+      },
+      {
+        id: 5,
+        name: '兔',
+        en: 'rabbit',
+        male: 37,
+        female: 4,
+        isLarge: false,
+      },
+    ];
+    
+    //1.找出farm裏面英文字母不含e的動物
+    const otherAnimal = farm.filter((v, i, arr) => {
+      return !v.en.includes('e')
+    })
+    console.log(otherAnimal);
+
+    //2.依照母的數量大小排序 升冪
+    const ascendFemaleAmount = [...farm].sort((a, b) => {
+      return a.female - b.female
+    })
+    console.log(ascendFemaleAmount);
+
+    //3.計算母的總數量，存成 countAnimal變數
+    const countAnimal = otherAnimal.reduce((total,animal)=>{
+      return total+animal.female;
+    },0);
+    console.log(countAnimal);
+  </script>
+</body>
+
+</html>

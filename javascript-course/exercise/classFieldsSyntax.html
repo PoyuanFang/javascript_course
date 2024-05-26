@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>類別字段語法 Class Fields Syntax</title>
+</head>
+
+<body>
+  <script>
+    class Account {
+      static bankName = '柏元銀行'
+      #accountNumber;
+      #ownerName;
+      #balance;
+      constructor(accountNumber, ownerName, balance) {
+        this.#accountNumber = accountNumber;
+        this.#ownerName = ownerName;
+        this.#balance = balance || 0;
+        console.log(this);
+      }
+      deposit(cash) {
+        if (cash > 0) {
+          this.#balance += cash;
+        }
+        console.log(`金額${cash}入帳成功,餘額${this.#balance}`);
+      }
+      withdraw(cash) {
+        if (cash > this.#balance) {
+          console.log(`餘額不足，提款失敗`)
+        } else {
+          this.#balance -= cash;
+          console.log(`金額${cash}提款成功,餘額${this.#balance}`)
+        }
+      }
+      getBalance() {
+        console.log(`餘額:${this.#balance}`);
+        return this.#balance;
+      }
+    }
+
+    const MyAccount = new Account('510214', 'Fang', 1000);
+    console.log(MyAccount.ownerName); //undefined
+
+
+    class SavingAccount extends Account {
+      static defaultInterestRate = 2;
+      #interestRate;
+      constructor(accountNumber, ownerName, balance, interestRate = SavingAccount.defaultInterestRate) {
+        super(accountNumber, ownerName, balance);
+        this.#interestRate = interestRate;
+      }
+      addInterest() {
+        const interest = (this.#interestRate * this.getBalance()) / 100;
+        this.deposit(interest) += interest
+        console.log(`存款利息${interest}, 餘額:${this.getBalance()}。`);
+      }
+    }
+
+    class CheckingAccount extends Account {
+      static defaultFreeTransactions = 2;
+      #freeTransactions;
+      #transactionCount;
+      constructor(accountNumber, ownerName, balance, freeTransactions = CheckingAccount.defaultFreeTransactions) {
+        super(accountNumber, ownerName, balance);
+        this.#freeTransactions = freeTransactions;
+        this.#transactionCount = 0;
+      }
+      withdraw(cash) {
+        super.withdraw(cash);
+        this.#transactionCount++;
+        if (this.#transactionCount > this.#freeTransactions) {
+          console.log(`扣除交易手續費`);
+          super.withdraw(10);
+        }
+      }
+      resetTransactionCount() {
+        this.#transactionCount = 0;
+      }
+    }
+
+    const myCheckingAccount = new CheckingAccount('12345', 'Poyuan', 1000,)
+    myCheckingAccount.withdraw(100);
+    myCheckingAccount.withdraw(100);
+    myCheckingAccount.withdraw(100);
+    myCheckingAccount.resetTransactionCount();
+    myCheckingAccount.withdraw(100);
+    myCheckingAccount.withdraw(100);
+    myCheckingAccount.withdraw(100);
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>練習13</title>
+</head>
+
+<body>
+  <script>
+  /*
+  使用箭頭函數以及三元運算子寫出一個函數 formatDate，
+  可以把傳入的日期物件轉換為以下格式： “2024/01/01 00:00”
+  */
+
+  let date = new Date;
+  let formatDate = (date) => {
+  let year= date.getFullYear();
+  let month= date.getMonth()+1
+  let day= date.getDate();
+  let hour= date.getHours();
+  let min= date.getMinutes();
+  
+  let trueMonth= month<10? `0${month}`:momnth;
+  let trueDay= day<10? `0${day}`:day;
+  let trueHour= hour<10? `0${hour}`:hour;
+  let trueMin= min<10? `0${min}`:min;
+
+  let dateString= `${year}/${trueMonth}/${trueDay}  ${trueHour}:${trueMin}`
+  return dateString;
+  }
+  console.log(formatDate(date));
+
+  </script>
+</body>
+
+</html>

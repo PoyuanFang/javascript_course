@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    class Person {
+      color = 'white';
+      constructor(data) {
+        this._name = data.name;
+        this._age = data.age;
+        this._color = 'blue';
+        this._pet = data.pet;
+      }
+      introduce() {
+        console.log(`這是 ${this._name}, 年齡 ${this._age} 歲`);
+      }
+      get age(){
+        return this._age;
+      }
+      set age(newAge){
+        this._age = newAge;
+      }
+      get name(){
+        return this._name
+      }
+    }
+
+    const allie = new Person({ name: 'Allie', age: 18, pet: 'dog' });
+
+    console.log(allie.age);
+    console.log(allie._age);
+    allie.age = 28;
+    console.log(allie._age);
+    console.log(allie.name);
+  </script>
+</body>
+
+</html>

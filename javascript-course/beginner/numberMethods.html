@@ -8,7 +8,25 @@
 </head>
 
 <body>
-  <script></script>
+  <script>
+    console.log(Number(0));
+    console.log(Number('0')); //0 數字的字串會自動轉換成數字
+    console.log(Number('0apple')); //NaN
+    console.log(Number(0.12345)); //0.12345
+    console.log(Number(''));    //0
+    console.log(Number('   ')); //0
+    console.log(Number(true));  //1
+    console.log(Number(false)); //0
+
+    console.log(Number.isNaN(NaN)); //true 是不是NaN
+    console.log(Number.isNaN('oapple')); //false
+    console.log(isNaN('0apple')); //true 全域
+    console.log(Number.isInteger(0)); //true 是不是整數
+    console.log(Number.parseFloat(42.2)); //42.2
+    console.log(Number.parseInt(42)); //42
+    console.log(Number.parseInt(42.2)); //42
+    console.log(Number.parseFloat('42.2')); //42.2 轉換成數字
+  </script>
 </body>
 
 </html>

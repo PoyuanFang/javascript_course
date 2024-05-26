@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>類別 Class</title>
+</head>
+
+<body>
+  <script>
+    class Person {
+      color = 'white';
+      constructor(data) {
+        this.name = data.name;
+        this.age = data.age;
+        this.color = 'blue';
+        this.pet = data.pet
+      }
+      introduce() {
+        console.log(`這是${this.name},年齡${this.age}`);
+      }
+      //靜態屬性/方法，不能被實例調用，但是this又指向實例，所以this會是undefined
+      static printAge(person) {
+        console.log(person.age);
+        // console.log(this.age); //undefined
+      }
+      static changeAge(newAge) {
+        this.age = newAge;
+      }
+
+      get birthdayAge() {
+        return this.age + 1;
+      }
+
+      set birthdayAge(newAge){
+        this.age = newAge;
+      }
+    }
+
+    const fang = new Person({ name: 'Fang', age: 18, pet: 'cat' })
+    console.log(fang.color);
+    fang.introduce();
+
+    // Person.printAge(fang);
+
+    // const birthday = Person.changeAge.bind(fang, 19);
+    // birthday();
+    // console.log(fang.age);
+
+    console.log(fang.birthdayAge);
+    fang.birthdayAge = 26;
+    console.log(fang.age);
+  </script>
+</body>
+
+</html>

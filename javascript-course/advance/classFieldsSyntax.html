@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>類別字段語法 Class Fields Syntax</title>
+</head>
+
+<body>
+  <script>
+    class Person {
+      #secret = '這是一個秘密';
+      notSecret = '這不是一個秘密';
+      static #staticPrivateSecret = '靜態且私有';
+      static staticSecret = '靜態';
+      constructor(name, age) {
+        this._name = name;
+        this._age = age;
+      }
+      getSecret() {
+        return this.#secret
+      }
+      setSecret(newSecret) {
+        this.#secret = newSecret;
+      }
+      getStaticPrivateSecret() {
+        return Person.#staticPrivateSecret;
+      }
+    }
+    const fang = new Person('Fang', 26);
+    console.log(fang._name);
+    console.log(fang.secret); //undefined
+    console.log(fang.notSecret); //這不是一個秘密
+    console.log(fang.personSecret); //undefined
+    console.log(fang.staticSecret); //undefined
+    console.log(Person.staticPrivateSecret);  //undefined
+    console.log(Person.staticSecret); //靜態
+    console.log(fang.getSecret()); //這是一個秘密
+    fang.setSecret('新秘密');
+    console.log(fang.getSecret()); //新秘密
+    console.log(fang.getStaticPrivateSecret()); //靜態且私有
+
+    class Student extends Person {
+      _school;
+      constructor(name, age, school) {
+        super(name, age);
+        this._school = school;
+      }
+      shareSecret() {
+        console.log(`${this._name} 説秘密是:${this.getSecret()}`);
+      }
+    }
+
+    const tom = new Student('Tom', 18, '資展');
+    tom.shareSecret();
+
+    //typeof
+    //instanceof 測試物件是否為構造函數的實例
+    //物件 instanceof 構造函數
+    console.log(fang instanceof Person);
+    console.log(tom instanceof Student);
+    console.log(tom instanceof Person);
+    console.log(Student instanceof Person); //false
+    console.log(Student.prototype instanceof Person); //true
+
+    const x = 1; //number
+    const greeting = 'Hello world' //string 基礎型別
+    console.log(greeting.includes('o'));
+
+    const greetingObj = new String('Hello world'); //物件
+    const greetingMethod = String('Hello world'); //物件
+
+    console.log(greeting instanceof String ); //false
+    console.log(greetingObj instanceof String); //true
+    console.log(greetingMethod instanceof String); //false
+
+    //auto boxing 對基礎型別使用方法時，js會自動幫我們包成物件，執行完之後，js會把物件拆掉變回基礎型別
+</script>
+</body>
+
+</html>

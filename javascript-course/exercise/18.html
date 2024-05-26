@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>練習18</title>
+</head>
+
+<body>
+    <form id="form">
+        <div>
+            <label for="userId">userId</label>
+            <input type="number" value="" name="userId" id="userId" />
+        </div>
+
+        <div>
+            <label for="title">title</label>
+            <input type="text" value="" name="title" id="title" />
+        </div>
+
+        <div>
+            <label for="body">body</label>
+            <input type="text" value="" name="body" id="body" />
+        </div>
+        <div>
+            <input type="submit">
+        </div>
+    </form>
+</body>
+<script>
+    const handleData = (data) => {
+    console.log(data);
+    }
+    const formEl = document.querySelector('#form')
+    formEl.addEventListener('submit', (e) => {
+        e.preventDefault();
+        let formObj = {};
+        console.log(e.target.elements);
+        for (let element of e.target.elements) { //對於e.target裡面的每個元素來說
+            if (element.name) { //如果element有name才執行
+                formObj[element.name] = element.value;
+            }
+        }
+        console.log(formObj);
+    })
+
+    fetch('https://jsonplaceholder.typicode.com/posts', {
+        method: 'POST',
+        body: JSON.stringify(formObj),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+    })
+        .then((response) => response.json())
+        .then((data) => {
+        handleData(data);
+        })
+        .catch((error)=>{
+            console.log(error);
+            alert('新增失敗')
+        })
+
+</script>
+
+</html>

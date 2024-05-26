@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>練習12</title>
+</head>
+
+<body>
+  <script>
+    /*請寫一個函數 numGenerator，可以接受兩個參數 num, type，並且回傳一個物件 {numbers: [], max: ?, min: ?}
+    根據傳入的參數 type 來決定要以四捨五入 (round)、無條件捨去 (floor)，或是無條件進位 (ceil) 哪種方式來處理隨機數字
+    如果傳入的 num 是一個陣列，numGenerator 會把非數字的字串變成 0，並進行 type 的處理
+    如果傳入的 num 是一個數字 n，numGenerator 可以隨機產生 n 個 0 - 100 之間的數字，並且進行 type 的處理
+    回傳物件中，除了會回傳 numbers 為處理過後的數字陣列之外，還會回傳屬性 max 跟 min，分別是數組中的最大與最小數字
+    */
+    /*
+        function numGenerator(num,type) {
+          return{
+            numbers:[],
+            max:?,
+            min:?,
+          }
+          
+        }
+        */
+
+    function numGenerator(num, type) {
+      function formatNumber(n) {
+        switch (type) {
+          case 'round':
+          default:
+            return Math.round(n);
+          case 'floor':
+            return Math.floor(n);
+          case 'ceil':
+            return Math.ceil(n);
+          // return不需要break;
+        }
+      }
+      let numArr = [];
+      if (Array.isArray(num)) {
+        for (item of num) {
+          let number = isNaN(Number(item)) ? 0 : formatNumber(Number(item));
+          numArr.push(number);
+        }
+      } else {
+        for (let i = 1; i <= num; i++) {
+          let random = formatNumber(Math.random() * 100);
+          numArr.push(random);
+        }
+      }
+      return {
+        numbers: [numArr],
+        max: Math.max(...numArr),
+        min: Math.min(...numArr),
+      }
+    }
+    console.log(numGenerator([1, 2, 3, 'hi', 0.467], 'round'));
+    console.log(numGenerator(5, 'round'));
+  </script>
+</body>
+
+</html>

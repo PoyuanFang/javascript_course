@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>遞迴練習</title>
+</head>
+<body>
+  <script>
+    //費氏數列遞迴練習
+    function fibonacci(n) {
+      if (n<2) {
+        return n
+      }else{
+        return fibonacci(n-1) + fibonacci(n-2)
+      }
+    }
+    
+    console.log(fibonacci(1));
+    console.log(fibonacci(2));
+    console.log(fibonacci(3));
+    console.log(fibonacci(4));
+    console.log(fibonacci(5));
+    console.log(fibonacci(6));
+    console.log(fibonacci(7));
+    console.log(fibonacci(8));
+
+    function factorialArr(n){
+      let arr  = []
+      for (let i=1;i<=n;i++){
+        arr.push(fibonacci(i))
+      }
+      return arr
+    }
+
+    console.log(factorialArr(8));
+
+
+</script>
+</body>
+</html>
